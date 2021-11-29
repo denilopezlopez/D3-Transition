@@ -13,6 +13,15 @@
 	<button id="start">Transition</button> 
 	<button id="reset">Reset</button>
 	<div id="main">
+		
+	</div>
+	
+	 <br><br>
+		<br>
+		<h2> Big Data, Visualization, and Society </h2>
+		<p> Course: <b>11.154/11.454</b> <br>
+		Assignment: <b>PSET9 - D3 Visualization Webpage</b> <br>
+		Author: <b>Deni Lopez</b> </p>
 
 	</div>
 <script type="text/javascript">
@@ -40,49 +49,36 @@ var rectangle = svgContainer.append("rect")
 d3.select("#start").on("click", function() { 
 	rectangle
 	.transition()
-	.attr("x", 250); // New Position
+	.attr("x", 250)
+	.attr("width", 100)
+	.attr("height", 100)
+	.attr("opacity", 0.5)
+	.attr("fill", "orange")
+	.delay(500)
+	.duration(2500)
+	.ease(d3.easeBounce)
+	.on("end",function() { // on end of transition...
+		d3.select(this)
+		.transition() // second transition
+		.attr("x", 150) // second x
+		.attr("width", 50) // second width 
+		.attr("height", 50) // second height 
+		.attr("opacity", 1) // second opacity 
+		.attr("fill", "pink") // second color 
+		.delay(500) // second delay 
+		.duration(2500) // second time 
+		.ease(d3.easeBounce); // second ease
+		});
 });
-
-// Set up the reset button to move it back to 50,50 
 
 d3.select("#reset").on("click", function() { 
 	rectangle
 	.transition()
-	.attr("x", 50); // Old Position
+	.attr("x", 50)
+	.attr("y", 50) // New Position
+	.attr("fill", "black");
 });
 
-d3.select("#start2").on("click", function() { 
-	rectangle
-	.transition() 
-	.attr("x", 250) 
-	.attr("opacity", 0.5)
-});
-	
-d3.select("#reset2").on("click", function() { 
-	rectangle
-	.transition()
-	.attr("x", 50) //old position 
-	.attr("y", 50)
-	.attr("opacity", 1) 
-});
-
-d3.select("#start3").on("click", function() { 
-	rectangle
-	.transition()
-	.attr("x", 250)
-	.attr("opacity", 0.5)
-	.attr("fill", 'blue'); // ALL OF OUR TRANSITIONS WILL GO HERE!
-});
-
-	d3.select("#reset3").on("click", function() { 
-		rectangle
-		.transition()
-		.attr("x", 50) //old position 
-		.attr("y", 50)
-		.attr("opacity", 1)
-		.attr("fill", 'green'); 
-	});
-	
 </script>
 </body>
 </html>
